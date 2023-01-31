@@ -2,9 +2,9 @@ import React from "react";
 import "./App.css";
 
 import "tachyons";
-import CardList from "./components/card-list";
-import SearchBox from "./components/searchbox.component";
-import Scroll from "./components/scroll.component";
+import CardList from "../components/card-list";
+import SearchBox from "../components/searchbox.component";
+import Scroll from "../components/scroll.component";
 
 class App extends React.Component {
   constructor() {
@@ -39,24 +39,21 @@ class App extends React.Component {
   };
 
   render() {
-    const filterrobots = this.state.robots.filter((robot) => {
-      return robot.name
-        .toLowerCase()
-        .includes(this.state.searchField.toLowerCase());
+    const { robots, searchField } = this.state;
+    const filterrobots = robots.filter((robot) => {
+      return robot.name.toLowerCase().includes(searchField.toLowerCase());
     });
-    if (this.state.robots.length === 0) {
-      return <h1>Loading...</h1>;
-    } else {
-      return (
-        <React.Fragment>
-          <h1>Robo friends</h1>
-          <SearchBox searchChange={this.onSearchChange} />
-          <Scroll>
-            <CardList robots={filterrobots} />
-          </Scroll>
-        </React.Fragment>
-      );
-    }
+    return !robots.length ? (
+      <h1>Loading...</h1>
+    ) : (
+      <React.Fragment>
+        <h1>Robo friends</h1>
+        <SearchBox searchChange={this.onSearchChange} />
+        <Scroll>
+          <CardList robots={filterrobots} />
+        </Scroll>
+      </React.Fragment>
+    );
   }
 }
 
