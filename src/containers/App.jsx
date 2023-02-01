@@ -5,6 +5,7 @@ import "tachyons";
 import CardList from "../components/card-list";
 import SearchBox from "../components/searchbox.component";
 import Scroll from "../components/scroll.component";
+import ErrorBoundary from "../components/error-boundary.component";
 
 class App extends React.Component {
   constructor() {
@@ -50,7 +51,9 @@ class App extends React.Component {
         <h1>Robo friends</h1>
         <SearchBox searchChange={this.onSearchChange} />
         <Scroll>
-          <CardList robots={filterrobots} />
+          <ErrorBoundary>
+            <CardList robots={filterrobots} />
+          </ErrorBoundary>
         </Scroll>
       </React.Fragment>
     );
