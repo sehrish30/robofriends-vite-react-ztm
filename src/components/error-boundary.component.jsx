@@ -23,9 +23,9 @@ class ErrorBoundary extends Component {
           <h1>Oops something went wrong</h1>
         </>
       );
-      // anything between ErrorBoundary Component
-      return this.props.children;
     }
+    // anything between ErrorBoundary Component
+    return this.props.children;
   }
 }
 
